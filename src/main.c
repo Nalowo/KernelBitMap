@@ -3,14 +3,24 @@
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 
+#include "allocator.h"
+
 #define KERNEL_ALLOC_MODULE "kernel_alloc_module"
 
 static int __init kernel_alloc_module_init(void) {
+  int res = allocator_init();
+  if (res != ALLOC_OK)
+  {
+    pr_err("%s: init ERR: %d\n", KERNEL_ALLOC_MODULE, res);
+    return res;
+  }
+
   pr_info("%s: init OK: \n", KERNEL_ALLOC_MODULE);
-  return 0;
+  return res;
 }
 
 static void __exit kernel_alloc_module_exit(void) {
+  allocator_cleanup();
   pr_info("%s: exit OK: \n", KERNEL_ALLOC_MODULE);
 }
 

@@ -25,4 +25,20 @@ struct allocation_info {
     size_t num_blocks;              /* Количество выделенных блоков */
 };
 
+struct stats_info {
+    size_t total_blocks;            /* Общее количество блоков */
+    size_t free_blocks;             /* Количество свободных блоков */
+    size_t allocated_blocks;        /* Количество выделенных блоков */
+    size_t total_memory;            /* Общий объем памяти в байтах */
+    size_t free_memory;             /* Объем свободной памяти в байтах */
+    size_t allocated_memory;        /* Объем выделенной памяти в байтах */
+    size_t fragmentation_percent;   /* Процент фрагментации */
+};
+
+int allocator_init(void);
+void* allocator_alloc(size_t bytes);
+int allocator_free(void *ptr);
+struct stats_info allocator_get_stats(void);
+void allocator_cleanup(void);
+
 #endif // ALLOCATOR_H
