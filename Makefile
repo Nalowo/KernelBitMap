@@ -20,4 +20,4 @@ format:
 check:
 	sudo python3 check.py --ko $(BUILD)/kernel_alloc_module.ko
 
-.PHONY: all clean load unload format
+.PHONY: all clean load unload format check
