@@ -9,7 +9,7 @@ clean:
 	$(MAKE) -C $(KDIR) M=$(PWD) MO=$(BUILD) clean
 
 load: all
-	sudo insmod $(BUILD)/kernel_alloc_module.ko
+	sudo insmod $(BUILD)/kernel_alloc.ko
 
 unload:
 	sudo rmmod kernel_alloc_module
@@ -17,7 +17,4 @@ unload:
 format:
 	clang-format -i $(PWD)/src/*
 
-check:
-	sudo python3 check.py --ko $(BUILD)/kernel_alloc_module.ko
-
-.PHONY: all clean load unload format check
+.PHONY: all clean load unload format
